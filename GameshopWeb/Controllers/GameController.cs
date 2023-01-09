@@ -75,5 +75,35 @@ namespace GameshopWeb.Controllers
                     ).ToList();
             }
         }
+
+        [HttpGet("listModel")]
+        public ListModel GetListModel()
+        {
+            using (var conn = new SqlConnection(
+                configuration.GetConnectionString("gameshopConnString")))
+            {
+                //var listModel = new ListModel();                
+                var listModel = new ListModel
+                {
+                    Genres = conn.Query<Genre>("SELECT * FROM genre").ToList(),
+                    Companies = conn.Query<Company>("SELECT * FROM company").ToList(),
+                    Games = conn.Query<Game>("SELECT * FROM Game").ToList()
+                };
+                foreach (var game in listModel.Games)
+                {
+                    game.Developer = listModel.Companies.FirstOrDefault(c => c.Id == game.IdDeveloper);
+                    game.Publisher = listModel.Companies.FirstOrDefault(c => c.Id == game.IdPublisher);
+                    game.Genre = listModel.Genres.FirstOrDefault(g => g.Id == game.IdGenre);
+                }
+                return listModel;
+            }
+        }
+    }
+
+    public class ListModel
+    {
+        public List<Genre> Genres { get; set; }
+        public List<Company> Companies { get; set; }
+        public List<Game> Games { get; set; }
     }
 }
