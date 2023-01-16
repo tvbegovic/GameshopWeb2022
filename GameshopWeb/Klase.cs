@@ -52,10 +52,10 @@ namespace GameshopWeb
         public decimal? Price { get; set; }
         public int? IdDeveloper { get; set; }
         public DateTime? ReleaseDate { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
-        public Company Developer { get; set; }
-        public Company Publisher { get; set; }
-        public Genre Genre { get; set; }
+        public Company? Developer { get; set; }
+        public Company? Publisher { get; set; }
+        public Genre? Genre { get; set; }
     }
 }

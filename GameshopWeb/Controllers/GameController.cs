@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using Dapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GameshopWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class GameController : ControllerBase
     {
         private IConfiguration configuration; 
@@ -77,6 +79,7 @@ namespace GameshopWeb.Controllers
         }
 
         [HttpGet("listModel")]
+        [Authorize]
         public ListModel GetListModel()
         {
             using (var conn = new SqlConnection(
@@ -98,12 +101,85 @@ namespace GameshopWeb.Controllers
                 return listModel;
             }
         }
+
+        [HttpGet("editModel/{id}")]
+        [Authorize]
+        public EditModel GetEditModel(int id)
+        {
+            using (var conn = new SqlConnection(
+                configuration.GetConnectionString("gameshopConnString")))
+            {
+                var genres = conn.Query<Genre>("SELECT * FROM genre").ToList();
+                var companies = conn.Query<Company>("SELECT * FROM company").ToList();
+                Game game;
+                if (id == 0)
+                    game = new Game();
+                else
+                    game = conn.QueryFirstOrDefault<Game>("SELECT * FROM game WHERE id = @id", new { id });
+                return new EditModel
+                {
+                    Companies = companies,
+                    Genres = genres,
+                    Game = game
+                };
+            }
+        }
+
+        [HttpPost("")]
+        [Authorize]
+        public Game Create(Game game)
+        {
+            using (var conn = new SqlConnection(
+                configuration.GetConnectionString("gameshopConnString")))
+            {
+                var sql = @"INSERT INTO [dbo].[Game]
+                       ([title],[idGenre],[idPublisher]
+                       ,[price],[idDeveloper],[releaseDate]
+                       ,[image]) OUTPUT inserted.id
+                 VALUES
+                       (@title,@idGenre,@idPublisher
+                       ,@price,@idDeveloper,@releaseDate
+                       ,@image)";
+                game.Id = conn.ExecuteScalar<int>(sql, game);
+                return game;
+            }
+        }
+
+        [HttpPut("")]
+        [Authorize]
+        public Game Update(Game game)
+        {
+            using (var conn = new SqlConnection(
+                configuration.GetConnectionString("gameshopConnString")))
+            {
+                var sql = @"UPDATE [dbo].[Game]
+                   SET [title] = @title
+                      ,[idGenre] = @idGenre
+                      ,[idPublisher] = @idPublisher
+                      ,[price] = @price
+                      ,[idDeveloper] = @idDeveloper
+                      ,[releaseDate] = @releaseDate
+                      ,[image] = @image
+                 WHERE id = @id";
+                conn.Execute(sql, game);
+                return game;
+            }
+        }
     }
+
+    
 
     public class ListModel
     {
         public List<Genre> Genres { get; set; }
         public List<Company> Companies { get; set; }
         public List<Game> Games { get; set; }
+    }
+
+    public class EditModel
+    {
+        public List<Genre> Genres { get; set; }
+        public List<Company> Companies { get; set; }
+        public Game Game { get; set; }
     }
 }
