@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameshopWeb", "GameshopWeb\GameshopWeb.csproj", "{5AD799B7-00EF-43DE-9E2C-290C998DB717}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VjezbaBlic1", "VjezbaBlic1\VjezbaBlic1.csproj", "{C0D5DA1F-BBA4-49FB-883E-817537995988}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VjezbaBlic1", "VjezbaBlic1\VjezbaBlic1.csproj", "{C0D5DA1F-BBA4-49FB-883E-817537995988}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TecajWebApi", "TecajWebApi\TecajWebApi.csproj", "{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C0D5DA1F-BBA4-49FB-883E-817537995988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0D5DA1F-BBA4-49FB-883E-817537995988}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0D5DA1F-BBA4-49FB-883E-817537995988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
