@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameshopWeb", "GameshopWeb\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VjezbaBlic1", "VjezbaBlic1\VjezbaBlic1.csproj", "{C0D5DA1F-BBA4-49FB-883E-817537995988}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TecajWebApi", "TecajWebApi\TecajWebApi.csproj", "{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecajWebApi", "TecajWebApi\TecajWebApi.csproj", "{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopWeb", "OnlineShopWeb\OnlineShopWeb.csproj", "{D57A22EF-8240-4C31-9D78-C3136EB9ED0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40AF0AC0-B6E2-4FDA-9F6F-ACCC0976B2EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57A22EF-8240-4C31-9D78-C3136EB9ED0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57A22EF-8240-4C31-9D78-C3136EB9ED0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57A22EF-8240-4C31-9D78-C3136EB9ED0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57A22EF-8240-4C31-9D78-C3136EB9ED0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
