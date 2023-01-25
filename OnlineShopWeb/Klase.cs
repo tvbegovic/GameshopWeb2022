@@ -1,4 +1,6 @@
-﻿namespace OnlineShopWeb
+﻿using System.Text.Json.Serialization;
+
+namespace OnlineShopWeb
 {
     public class Employee
     {
@@ -7,6 +9,7 @@
         public string Lastname { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
+        [JsonIgnore]
         public string Password { get; set; }
     }
 

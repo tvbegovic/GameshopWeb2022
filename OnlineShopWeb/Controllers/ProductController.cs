@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
@@ -43,14 +44,31 @@ namespace OnlineShopWeb.Controllers
             decimal? priceTo = null)
         {
             var sql = @"SELECT * FROM Product WHERE
-                        (name = @name OR @name IS NULL) AND
+                        (name LIKE @name OR @name IS NULL) AND
                         (price >= @priceFrom OR @priceFrom IS NULL) AND 
                         (price <= @priceTo OR @priceTo IS NULL)
                         ";
             using (var conn = new SqlConnection(
                 configuration.GetConnectionString("connString")))
             {
-                return conn.Query<Product>(sql, new { name, priceFrom, priceTo }).ToList();
+                return conn.Query<Product>(sql, new { name = $"%{name}%", priceFrom, priceTo }).ToList();
+            }
+        }
+
+        [HttpPost("")]
+        [Authorize]
+        public Product Create(Product product)
+        {
+            using (var conn = new SqlConnection(
+                configuration.GetConnectionString("connString")))
+            {
+                var sql = @"INSERT INTO Product(
+                    Name,Code,Price,IdManufacturer,IdCategory
+                    ) OUTPUT inserted.id VALUES(
+                    @Name,@Code,@Price,@IdManufacturer,@IdCategory
+                    )";
+                product.ID = conn.ExecuteScalar<int>(sql, product);
+                return product;
             }
         }
 
